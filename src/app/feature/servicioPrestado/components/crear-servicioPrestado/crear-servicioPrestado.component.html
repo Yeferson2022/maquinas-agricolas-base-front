@@ -1,0 +1,44 @@
+<div class="container mt-4 col-sm-6">
+  <div class="card bg-gray text-black">
+
+    <div class="card-body">
+
+      <form [formGroup]="servicioPrestadoForm" (ngSubmit)="crear()">
+        <div class="mb-3">
+          <label for="identificacionMaquina" class="form-label">Identificación Maquina Agricola</label>
+          <input validar id="identificacionMaquina" formControlName="identificacionMaquina" type="text" placeholder="Identificación Maquina" class="form-control"
+            id="identificacionMaquina">
+        </div>
+        <div class="mb-3">
+          <label for="cantidadHorasCargas" class="form-label">Cantidad de Horas o Cargas Trabajadas</label>
+          <input validar id="cantidadHorasCargas" formControlName="cantidadHorasCargas" type="text" placeholder="Cantidad Horas o Cargas" class="form-control" id="cantidadHorasCargas">
+        </div>
+        <div class="mb-3">
+          <label for="idCliente" class="form-label">Cliente</label>
+          <select validar id="idCliente" formControlName="idCliente" class="form-control select">
+            <option value="" selected disabled >Seleccione un cliente</option>
+            <option *ngFor="let clientes of clientes| async" [ngValue]="clientes.id">
+              {{clientes.nombre}}
+            </option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="tipoTrabajo" class="form-label">Tipo de Servicio</label>
+          <select validar id="tipoTrabajo" formControlName="tipoTrabajo" class="form-control select">
+            <option value="" selected disabled >Seleccione un tipo de Servicio</option>
+            <option *ngFor="let tipoTrabajo of tipoTrabajo" [ngValue]="tipoTrabajo.id">
+              {{tipoTrabajo.tipo}}
+            </option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="fechaUltimoMantenimiento" class="form-label">Fecha del Ultimo Mantenimiento</label>
+          <input validar id="fechaUltimoMantenimiento" formControlName="fechaUltimoMantenimiento" type="text" placeholder="Fecha del Ultimo Mantenimiento" class="form-control"
+                 id="fechaUltimoMantenimiento">
+        </div>
+        <button type="submit" id="btnCrearServicio" [disabled]="!servicioPrestadoForm.valid" class="btn btn-primary">Registrar ServicioPrestado</button>
+      </form>
+
+    </div>
+  </div>
+</div>

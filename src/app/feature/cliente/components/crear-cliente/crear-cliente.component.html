@@ -1,0 +1,25 @@
+<div class="container mt-4 col-sm-6">
+  <div class="card bg-gray text-black">
+    <div class="card-body">
+      <form [formGroup]="clienteForm" (ngSubmit)="crear()">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input validar validacionInicial formControlName="nombre" type="text" placeholder="Ingrese el nombre del cliente"
+            class="form-control" id="nombre">
+        </div>
+        <div class="mb-3">
+          <label for="identificacion" class="form-label">Identificacion</label>
+          <input validar validacionInicial formControlName="identificacion" type="text" placeholder="Ingrese la identificacion del cliente"
+            type="text" placeholder="Ingrese la identificaion del cliente" class="form-control" id="identificacion">
+        </div>
+        <div class="mb-3">
+          <label for="vereda" class="form-label">Vereda</label>
+          <input validar validacionInicial formControlName="vereda" type="text" placeholder="Ingrese la vereda del cliente"
+                 class="form-control" id="vereda">
+        </div>
+        <button type="submit" id="btnCrearCliente" [disabled]="!clienteForm.valid" class="btn btn-primary">Registrar Cliente</button>
+      </form>
+    </div>
+  </div>
+</div>
+
