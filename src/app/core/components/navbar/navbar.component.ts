@@ -23,6 +23,15 @@ import { MenuItem } from '@core/modelo/menu-item';
     cursor: pointer;
   }
 
+  nav a:hover {
+    background-color: rgba(62, 62, 62, 0.22);
+    padding: 3px 0px;
+    border-radius: 5px;
+    color: #4b4a4a;
+
+
+  }
+
   nav a.router-link-active {
     color: #106cc8;
   }`],

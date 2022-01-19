@@ -1,7 +1,7 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
-import { ListarCompraComponent } from './listar-compra.component';
+import { ListarServicioPrestadoComponent } from './listar-servicioPrestado.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -13,14 +13,14 @@ import { ServicioPrestado } from '../../shared/model/servicioPrestado';
 
 
 describe('ListarCompraComponent', () => {
-  let component: ListarCompraComponent;
-  let fixture: ComponentFixture<ListarCompraComponent>;
+  let component: ListarServicioPrestadoComponent;
+  let fixture: ComponentFixture<ListarServicioPrestadoComponent>;
   let compraService: ServicioPrestadoService;
-  const listaCompras: ServicioPrestado[] = [new ServicioPrestado(123456789, 'Calle 1', 'Bogotá', 1, 1, 1), new ServicioPrestado(123456789, 'Calle 1', 'Bogotá', 1, 1, 1)];
+  const listaCompras: ServicioPrestado[] = [new ServicioPrestado(123456789, 'Calle 1', 1, 1, 1, 1), new ServicioPrestado(123456789, 'Calle 1', 2, 1, 2022/01/11, 1)];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ListarCompraComponent],
+      declarations: [ListarServicioPrestadoComponent],
       imports: [
         CommonModule,
         HttpClientModule,
@@ -32,7 +32,7 @@ describe('ListarCompraComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListarCompraComponent);
+    fixture = TestBed.createComponent(ListarServicioPrestadoComponent);
     component = fixture.componentInstance;
     compraService = TestBed.inject(ServicioPrestadoService);
     spyOn(compraService, 'consultar').and.returnValue(
@@ -43,15 +43,15 @@ describe('ListarCompraComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    expect(component.compras.length).toBe(2);
+    expect(component.servicioPrestados.length).toBe(2);
   });
 
   it('should list compras', () => {
-    expect(component.compras.length).toBe(2);
+    expect(component.servicioPrestados.length).toBe(2);
   });
 
   it('should delete servicioPrestado', () => {
     component.removerCompraDeLista(listaCompras, listaCompras[0]);
-    expect(component.compras.length).toBe(1);
+    expect(component.servicioPrestados.length).toBe(1);
   });
 });

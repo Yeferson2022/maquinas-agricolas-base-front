@@ -4,10 +4,10 @@ import { Component, OnInit } from '@angular/core';
 
   // tslint:disable-next-line:component-selector
   selector: 'app-servicioPrestado',
-  templateUrl: './compra.component.html',
-  styleUrls: ['./compra.component.css']
+  templateUrl: './servicioPrestado.component.html',
+  styleUrls: ['./servicioPrestado.component.css']
 })
-export class CompraComponent implements OnInit {
+export class ServicioPrestadoComponent implements OnInit {
 
   constructor() { }
 

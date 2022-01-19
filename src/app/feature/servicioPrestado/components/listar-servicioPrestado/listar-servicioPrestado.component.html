@@ -1,0 +1,85 @@
+<div class="container mt-4 col-sm-10">
+  <div class="row">
+    <div class="col">
+      <div class="input-group mb-4">
+        <input class="busqueda" type="text" #identificadorMaquina id="identificadorMaquina"
+               placeholder=" Identificación Maquina"
+               aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-primary"
+                (click)="consultarServiciosPorIdentificacionMaquina(identificadorMaquina.value)"
+                type="button" id="button-addon2">BuscarMaquina
+        </button>
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group mb-4">
+        <input class="busqueda" type="text" #identificadorCliente id="identificadorCliente"
+               placeholder=" Identificación Cliente"
+               aria-label="Recipient's username" aria-describedby="button-addon">
+        <button class="btn btn-outline-primary"
+                (click)="consultarServiciosPorIdentificacionCliente(identificadorCliente.value)"
+                type="button" id="button-addon">BuscarCliente
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card bg-gray text-black">
+    <div class="card-body">
+      <table *ngIf="!ocultar" class="table table-striped table-hover">
+        <thead>
+        <tr>
+          <th scope="col">Identificacion Cliente</th>
+          <th scope="col">Identificacion Maquina</th>
+          <th scope="col">Tipo de Trabajo</th>
+          <th scope="col">Cantidad Horas o Cargas</th>
+          <th scope="col">Total</th>
+          <th scope="col">fechaUltimoMantenimiento</th>
+          <th scope="col">fechaProximoMantenimiento</th>
+          <th scope="col">Acción</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let servicioPrestado of servicioPrestados">
+          <td>{{servicioPrestado.idCliente}}</td>
+          <td>{{servicioPrestado.identificacionMaquina}}</td>
+          <td>{{servicioPrestado.tipoTrabajo}}</td>
+          <td>{{servicioPrestado.cantidadHorasCargas}}</td>
+          <td>{{servicioPrestado.total}}</td>
+          <td>{{servicioPrestado.fechaUltimoMantenimiento}}</td>
+          <td>{{servicioPrestado.fechaProximoMantenimiento}}</td>
+          <td><i id="borrar-{{servicioPrestado.id}}" class="bi bi-trash-fill btn-borrar"
+                 (click)="eliminarCompra(servicioPrestado)"></i></td>
+        </tr>
+        </tbody>
+      </table>
+
+      <table *ngIf="ocultar" class="table table-striped table-hover">
+        <thead>
+        <tr>
+          <th scope="col">Identificacion Servicio</th>
+          <th scope="col">Identificacion Maquina</th>
+          <th scope="col">Tipo de Trabajo</th>
+          <th scope="col">Cantidad Horas o Cargas</th>
+          <th scope="col">Total</th>
+          <th scope="col">Nombre Cliente</th>
+          <th scope="col">Identificacion</th>
+          <th scope="col">Vereda</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let servicioPrestado of servicioPrestados">
+          <td>{{servicioPrestado.id}}</td>
+          <td>{{servicioPrestado.identificacionMaquina}}</td>
+          <td>{{servicioPrestado.tipoTrabajo}}</td>
+          <td>{{servicioPrestado.cantidadHorasCargas}}</td>
+          <td>{{servicioPrestado.total}}</td>
+          <td>{{servicioPrestado.nombre}}</td>
+          <td>{{servicioPrestado.identificacion}}</td>
+          <td>{{servicioPrestado.vereda}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
