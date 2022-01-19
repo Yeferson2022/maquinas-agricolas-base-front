@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { CompraRoutingModule } from './compra-routing.module';
+import { ServicioPrestadoRoutingModule } from './servicio-prestado-routing.module';
 import { ListarServicioPrestadoComponent } from './components/listar-servicioPrestado/listar-servicioPrestado.component';
 import { CrearServicioPrestadoComponent } from './components/crear-servicioPrestado/crear-servicioPrestado.component';
 import { ServicioPrestadoComponent } from './components/servicioPrestado/servicioPrestado.component';
@@ -18,7 +18,7 @@ import { ClienteService } from '@shared/service/cliente.service';
     ServicioPrestadoComponent
   ],
   imports: [
-    CompraRoutingModule,
+    ServicioPrestadoRoutingModule,
     SharedModule
   ],
   providers: [ServicioPrestadoService, CiudadService, ClienteService]

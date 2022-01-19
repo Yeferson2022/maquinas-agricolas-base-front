@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from '@core-service/http.service';
 import {environment} from 'src/environments/environment';
-import {ServicioPrestado, CompraRespuesta} from '../model/servicioPrestado';
+import {ServicioPrestado, ServicioPrestadoRespuesta} from '../model/servicioPrestado';
 
 
 @Injectable()
@@ -24,7 +24,7 @@ export class ServicioPrestadoService {
   }
 
   public guardar(servicioPrestado: ServicioPrestado) {
-    return this.http.doPost<ServicioPrestado, CompraRespuesta>(`${environment.endpoint}/servicio`, servicioPrestado,
+    return this.http.doPost<ServicioPrestado, ServicioPrestadoRespuesta>(`${environment.endpoint}/servicio`, servicioPrestado,
       this.http.optsName('Crear/Actualizar servicio'));
   }
 

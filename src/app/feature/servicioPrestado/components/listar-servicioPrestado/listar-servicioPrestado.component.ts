@@ -20,7 +20,7 @@ export class ListarServicioPrestadoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.consultarCompras();
+    this.consultarServicioPrestado();
   }
 
   consultarServiciosPorIdentificacionMaquina(identificacionMaquina: string) {
@@ -38,15 +38,15 @@ export class ListarServicioPrestadoComponent implements OnInit {
     });
   }
 
-  consultarCompras() {
+  consultarServicioPrestado() {
     this.compraService.consultar().subscribe(compras => this.servicioPrestados = compras);
   }
 
-  eliminarCompra(compra: ServicioPrestado) {
-    this.compraService.eliminar(compra).subscribe(
+  eliminarServicioPrestado(servicioPrestado: ServicioPrestado) {
+    this.compraService.eliminar(servicioPrestado).subscribe(
       res => {
         console.log(res);
-        this.removerCompraDeLista(this.servicioPrestados, compra);
+        this.removerServicioPrestadoDeLista(this.servicioPrestados, servicioPrestado);
         this.showSuccess('Eliminado exitoso');
       }, error => {
         this.showDanger(error.error.mensaje);
@@ -54,10 +54,10 @@ export class ListarServicioPrestadoComponent implements OnInit {
     );
   }
 
-  removerCompraDeLista(compras: ServicioPrestado[], compra: ServicioPrestado) {
-    const i = compras.indexOf(compra);
+  removerServicioPrestadoDeLista(prestados: ServicioPrestado[], compra: ServicioPrestado) {
+    const i = prestados.indexOf(compra);
     if (i !== -1) {
-      compras.splice(i, 1);
+      prestados.splice(i, 1);
     }
   }
 

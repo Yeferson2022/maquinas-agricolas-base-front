@@ -34,8 +34,8 @@
           <th scope="col">Tipo de Trabajo</th>
           <th scope="col">Cantidad Horas o Cargas</th>
           <th scope="col">Total</th>
-          <th scope="col">fechaUltimoMantenimiento</th>
-          <th scope="col">fechaProximoMantenimiento</th>
+          <th scope="col">Fecha Ultimo Mantenimiento</th>
+          <th scope="col">Fecha Proximo Mantenimiento</th>
           <th scope="col">Acción</th>
         </tr>
         </thead>
@@ -49,7 +49,7 @@
           <td>{{servicioPrestado.fechaUltimoMantenimiento}}</td>
           <td>{{servicioPrestado.fechaProximoMantenimiento}}</td>
           <td><i id="borrar-{{servicioPrestado.id}}" class="bi bi-trash-fill btn-borrar"
-                 (click)="eliminarCompra(servicioPrestado)"></i></td>
+                 (click)="eliminarServicioPrestado(servicioPrestado)"></i></td>
         </tr>
         </tbody>
       </table>

@@ -11,11 +11,11 @@ import { HttpService } from 'src/app/core/services/http.service';
 import { ClienteService } from '@shared/service/cliente.service';
 import { Cliente } from '@shared/model/Cliente';
 
-describe('ListarProductoComponent', () => {
+describe('ListarClienteComponent', () => {
   let component: ListarClienteComponent;
   let fixture: ComponentFixture<ListarClienteComponent>;
-  let productoService: ClienteService;
-  const listaProductos: Cliente[] = [new Cliente('A0A0', 'Cliente 1', 'Bello Valle'), new Cliente('A0A2', 'Cliente 2', 'Bello Valle')];
+  let clienteService: ClienteService;
+  const clientes: Cliente[] = [new Cliente('Yeferson', '1094', 'Bello Valle'), new Cliente('Angie', '10074', 'El Oroque')];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -33,9 +33,9 @@ describe('ListarProductoComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ListarClienteComponent);
     component = fixture.componentInstance;
-    productoService = TestBed.inject(ClienteService);
-    spyOn(productoService, 'consultar').and.returnValue(
-      of(listaProductos)
+    clienteService = TestBed.inject(ClienteService);
+    spyOn(clienteService, 'consultar').and.returnValue(
+      of(clientes)
     );
     fixture.detectChanges();
   });

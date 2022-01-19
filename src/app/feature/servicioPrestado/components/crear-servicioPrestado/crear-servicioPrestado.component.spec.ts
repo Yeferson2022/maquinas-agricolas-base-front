@@ -1,22 +1,20 @@
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
-import { ServicioPrestadoService } from '../../shared/service/servicioPrestado.service';
-import { HttpService } from '@core/services/http.service';
-import { CiudadService } from '@shared/service/ciudad.service';
-import { ClienteService } from '@shared/service/cliente.service';
-import { of } from 'rxjs';
+import {CommonModule} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RouterTestingModule} from '@angular/router/testing';
+import {ServicioPrestadoService} from '../../shared/service/servicioPrestado.service';
+import {HttpService} from '@core/services/http.service';
+import {ClienteService} from '@shared/service/cliente.service';
+import {of} from 'rxjs';
 
-import { CrearServicioPrestadoComponent } from './crear-servicioPrestado.component';
+import {CrearServicioPrestadoComponent} from './crear-servicioPrestado.component';
 
-describe('CrearCompraComponent', () => {
+describe('CrearServicioPrestadoComponent', () => {
   let component: CrearServicioPrestadoComponent;
   let fixture: ComponentFixture<CrearServicioPrestadoComponent>;
-  let compraService: ServicioPrestadoService;
-  let ciudadService: CiudadService;
-  let productoService: ClienteService;
+  let servicioPrestadoService: ServicioPrestadoService;
+  let clienteService: ClienteService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -28,7 +26,7 @@ describe('CrearCompraComponent', () => {
         ReactiveFormsModule,
         FormsModule
       ],
-      providers: [ServicioPrestadoService, CiudadService, ClienteService, HttpService],
+      providers: [ServicioPrestadoService, ClienteService, HttpService],
     })
       .compileComponents();
   }));
@@ -36,21 +34,12 @@ describe('CrearCompraComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CrearServicioPrestadoComponent);
     component = fixture.componentInstance;
-    compraService = TestBed.inject(ServicioPrestadoService);
-    productoService = TestBed.inject(ClienteService);
-    ciudadService = TestBed.inject(CiudadService);
-    spyOn(compraService, 'guardar').and.returnValue(
-      of({ valor: 1 })
+    servicioPrestadoService = TestBed.inject(ServicioPrestadoService);
+    clienteService = TestBed.inject(ClienteService);
+    spyOn(servicioPrestadoService, 'guardar').and.returnValue(
+      of({valor: 1})
     );
-    spyOn(ciudadService, 'consultar').and.returnValue(
-      of([
-        {
-          id: 1,
-          nombre: 'Bogotá'
-        }
-      ])
-    );
-    spyOn(productoService, 'consultar').and.returnValue(
+    spyOn(clienteService, 'consultar').and.returnValue(
       of([
         {
           id: 1,
@@ -78,11 +67,11 @@ describe('CrearCompraComponent', () => {
   });
 
   it('Registrando servicioPrestado', () => {
-    component.servicioPrestadoForm.controls.identificadorUsuario.setValue(123456789);
-    component.servicioPrestadoForm.controls.direccion.setValue('Calle 1');
-    component.servicioPrestadoForm.controls.ciudad.setValue('Bogotá');
-    component.servicioPrestadoForm.controls.productoId.setValue(1);
-    component.servicioPrestadoForm.controls.tipoUsuario.setValue(1);
+    component.servicioPrestadoForm.controls.identificacionMaquina.setValue('Ford 5000');
+    component.servicioPrestadoForm.controls.cantidadHorasCargas.setValue(11);
+    component.servicioPrestadoForm.controls.idCliente.setValue(1);
+    component.servicioPrestadoForm.controls.tipoTrabajo.setValue(1);
+    component.servicioPrestadoForm.controls.fechaUltimoMantenimiento.setValue('2022-01-14');
 
     expect(component.servicioPrestadoForm.valid).toBeTruthy();
 

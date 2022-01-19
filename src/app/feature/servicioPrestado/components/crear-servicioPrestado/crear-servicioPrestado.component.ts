@@ -66,7 +66,7 @@ export class CrearServicioPrestadoComponent implements OnInit {
   private construirFormularioCompra() {
     this.servicioPrestadoForm = new FormGroup({
       identificacionMaquina: new FormControl('', [Validators.required, Validators.minLength(6),
-        Validators.maxLength(10)]),
+        Validators.maxLength(20)]),
       tipoTrabajo: new FormControl('', [Validators.required]),
       idCliente: new FormControl(''),
       cantidadHorasCargas: new FormControl('', [Validators.required]),

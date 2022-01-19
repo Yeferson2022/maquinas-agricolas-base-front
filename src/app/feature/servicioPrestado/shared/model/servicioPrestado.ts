@@ -5,14 +5,14 @@ export class ServicioPrestado {
   tipoTrabajo: number;
   cantidadHorasCargas: number;
   total: number;
-  fechaUltimoMantenimiento: Date;
-  fechaProximoMantenimiento: Date;
+  fechaUltimoMantenimiento: string;
+  fechaProximoMantenimiento: string;
   nombre: string;
   identificacion: string;
   vereda: string;
 
   constructor(idCliente: number, identificacionMaquina: string, tipoTrabajo: number,
-              cantidadHorasCargas: number, total: number, fechaUltimoMantenimiento: Date, fechaProximoMantenimiento: Date,
+              cantidadHorasCargas: number, total: number, fechaUltimoMantenimiento: string, fechaProximoMantenimiento: string,
               nombre: string, identificacion: string, vereda: string, id?: number) {
     this.id = id;
     this.idCliente = idCliente;
@@ -28,6 +28,7 @@ export class ServicioPrestado {
 
   }
 }
-export interface CompraRespuesta {
+
+export interface ServicioPrestadoRespuesta {
   valor: number;
 }

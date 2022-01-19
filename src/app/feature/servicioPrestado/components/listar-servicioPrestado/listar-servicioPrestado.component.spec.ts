@@ -1,22 +1,27 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {of} from 'rxjs';
 
-import { ListarServicioPrestadoComponent } from './listar-servicioPrestado.component';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterTestingModule } from '@angular/router/testing';
+import {ListarServicioPrestadoComponent} from './listar-servicioPrestado.component';
+import {CommonModule} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
+import {RouterTestingModule} from '@angular/router/testing';
 
 
-import { HttpService } from 'src/app/core/services/http.service';
-import { ServicioPrestadoService } from '../../shared/service/servicioPrestado.service';
-import { ServicioPrestado } from '../../shared/model/servicioPrestado';
+import {HttpService} from 'src/app/core/services/http.service';
+import {ServicioPrestadoService} from '../../shared/service/servicioPrestado.service';
+import {ServicioPrestado} from '../../shared/model/servicioPrestado';
 
 
 describe('ListarCompraComponent', () => {
   let component: ListarServicioPrestadoComponent;
   let fixture: ComponentFixture<ListarServicioPrestadoComponent>;
-  let compraService: ServicioPrestadoService;
-  const listaCompras: ServicioPrestado[] = [new ServicioPrestado(123456789, 'Calle 1', 1, 1, 1, 1), new ServicioPrestado(123456789, 'Calle 1', 2, 1, 2022/01/11, 1)];
+  let servicioPrestadoService: ServicioPrestadoService;
+  const servicioPrestados: ServicioPrestado[] = [new ServicioPrestado(1, 'Ford 6600', 3,
+    11, 220000,   '2022/01/12', '2022-01-11', 'Yeferson',
+    '1094580', 'Bello Valle'), new
+  ServicioPrestado(2, 'Ford 5000', 2, 2, 500000,
+      '2022-01-14', '2022-01-11', 'Yeferson', '1094580', 'Bello Valle')];
+
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -34,9 +39,9 @@ describe('ListarCompraComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ListarServicioPrestadoComponent);
     component = fixture.componentInstance;
-    compraService = TestBed.inject(ServicioPrestadoService);
-    spyOn(compraService, 'consultar').and.returnValue(
-      of(listaCompras)
+    servicioPrestadoService = TestBed.inject(ServicioPrestadoService);
+    spyOn(servicioPrestadoService, 'consultar').and.returnValue(
+      of(servicioPrestados)
     );
     fixture.detectChanges();
   });
@@ -51,7 +56,7 @@ describe('ListarCompraComponent', () => {
   });
 
   it('should delete servicioPrestado', () => {
-    component.removerCompraDeLista(listaCompras, listaCompras[0]);
+    component.removerServicioPrestadoDeLista(servicioPrestados, servicioPrestados[0]);
     expect(component.servicioPrestados.length).toBe(1);
   });
 });

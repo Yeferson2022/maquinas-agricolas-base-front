@@ -10,10 +10,10 @@ import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ClienteService } from '@shared/service/cliente.service';
 
-describe('CrearProductoComponent', () => {
+describe('CrearClienteComponent', () => {
   let component: CrearClienteComponent;
   let fixture: ComponentFixture<CrearClienteComponent>;
-  let productoService: ClienteService;
+  let clienteService: ClienteService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -33,8 +33,8 @@ describe('CrearProductoComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CrearClienteComponent);
     component = fixture.componentInstance;
-    productoService = TestBed.inject(ClienteService);
-    spyOn(productoService, 'guardar').and.returnValue(
+    clienteService = TestBed.inject(ClienteService);
+    spyOn(clienteService, 'guardar').and.returnValue(
       of({ valor: 1 })
     );
     fixture.detectChanges();
@@ -50,9 +50,9 @@ describe('CrearProductoComponent', () => {
 
   it('Registrando cliente', () => {
     expect(component.clienteForm.valid).toBeFalsy();
-    component.clienteForm.controls.codigoProducto.setValue('001AA');
-    component.clienteForm.controls.nombre.setValue('Cliente test');
-    component.clienteForm.controls.valorProducto.setValue(150000);
+    component.clienteForm.controls.nombre.setValue('Yeferson Palacio');
+    component.clienteForm.controls.identificacion.setValue('1094580877');
+    component.clienteForm.controls.vereda.setValue('Bello Valle');
     expect(component.clienteForm.valid).toBeTruthy();
 
     component.crear();

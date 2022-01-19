@@ -1,21 +1,21 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 
-import { environment } from 'src/environments/environment';
-import { HttpService } from 'src/app/core/services/http.service';
+import {environment} from 'src/environments/environment';
+import {HttpService} from 'src/app/core/services/http.service';
 
-import { HttpResponse } from '@angular/common/http';
+import {HttpResponse} from '@angular/common/http';
 
-import { ServicioPrestado, CompraRespuesta } from '../model/servicioPrestado';
-import { ServicioPrestadoService } from './servicioPrestado.service';
+import {ServicioPrestadoRespuesta, ServicioPrestado} from '../model/servicioPrestado';
+import {ServicioPrestadoService} from './servicioPrestado.service';
 
 
-describe('CompraService', () => {
+describe('ServicioPrestadoService', () => {
   let httpMock: HttpTestingController;
   let service: ServicioPrestadoService;
-  const apiEndpointCompraConsulta = `${environment.endpoint}/compras`;
-  const apiEndpointCompras = `${environment.endpoint}/compras`;
+  const apiEndpointServicioPrestadoConsulta = `${environment.endpoint}/servicio`;
+  const apiEndpointServicioPrestado = `${environment.endpoint}/servicio`;
 
   beforeEach(() => {
     const injector = TestBed.configureTestingModule({
@@ -31,36 +31,31 @@ describe('CompraService', () => {
     expect(compraService).toBeTruthy();
   });
 
-  it('deberia listar compras', () => {
-    const dummyCompras = [
-      new ServicioPrestado(123456789, 'Calle 1', 'Bogotá', 1, 1), new ServicioPrestado(123456789, 'Calle 1', 'Bogotá', 1, 1)
-    ];
-    service.consultar().subscribe(compras => {
-      expect(compras.length).toBe(2);
-      expect(compras).toEqual(dummyCompras);
+  it('deberia listar los ServicioPrestado', () => {
+    const servicioPrestados = [new ServicioPrestado(1, 'Ford 6600', 3,
+      11, 220000,   '2022/01/12', '2022-01-11', 'Yeferson',
+      '1094580', 'Bello Valle'), new
+    ServicioPrestado(2, 'Ford 5000', 2, 2, 500000,
+      '2022-01-14', '2022-01-11', 'Yeferson', '1094580', 'Bello Valle')];
+
+    service.consultar().subscribe(servicioPrestado => {
+      expect(servicioPrestado.length).toBe(2);
+      expect(servicioPrestado).toEqual(servicioPrestados);
     });
-    const req = httpMock.expectOne(apiEndpointCompraConsulta);
+    const req = httpMock.expectOne(apiEndpointServicioPrestadoConsulta);
     expect(req.request.method).toBe('GET');
-    req.flush(dummyCompras);
+    req.flush(servicioPrestados);
   });
 
   it('deberia crear un servicioPrestado', () => {
-    const dummyCompra = new ServicioPrestado(123456789, 'Calle 1', 'Bogotá', 1, 1);
-    service.guardar(dummyCompra).subscribe((respuesta) => {
-      expect(respuesta).toEqual({ valor: 1 });
+    const dummyServicioPrestado = new ServicioPrestado(1, 'Ford 6600', 3,
+      11, 220000,   '2022/01/12', '2022-01-11', 'Yeferson',
+      '1094580', 'Bello Valle');
+    service.guardar(dummyServicioPrestado).subscribe((respuesta) => {
+      expect(respuesta).toEqual({valor: 1});
     });
-    const req = httpMock.expectOne(apiEndpointCompras);
+    const req = httpMock.expectOne(apiEndpointServicioPrestado);
     expect(req.request.method).toBe('POST');
-    req.event(new HttpResponse<CompraRespuesta>({ body: { valor: 1 } }));
-  });
-
-  it('deberia eliminar un servicioPrestado', () => {
-    const dummyCompra = new ServicioPrestado(123456789, 'Calle 1', 'Bogotá', 1, 1, 1);
-    service.eliminar(dummyCompra).subscribe((respuesta) => {
-      expect(respuesta).toEqual(true);
-    });
-    const req = httpMock.expectOne(`${apiEndpointCompras}/1`);
-    expect(req.request.method).toBe('DELETE');
-    req.event(new HttpResponse<boolean>({ body: true }));
+    req.event(new HttpResponse<ServicioPrestadoRespuesta>({body: {valor: 1}}));
   });
 });
